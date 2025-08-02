@@ -3,7 +3,7 @@
 This is the initial setup for the Attendance Management System project.
 
 ## Structure
-- `src/com/school/Main.java`: Contains the welcome message Java program.
+- `src/com/school/Main.java`: Contains the welcome messages Java program.
 
 ## How to Run
 ```bash
