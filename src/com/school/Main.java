@@ -12,14 +12,17 @@ public class Main {
         Course c3 = new Course("Chemistry");
 
         // Display details
-        System.out.println("=== Students ===");
+        System.out.println("=== Registered Students ===");
         s1.displayDetails();
         s2.displayDetails();
         s3.displayDetails();
 
-        System.out.println("\n=== Courses ===");
+        System.out.println("\n=== Registered Courses ===");
         c1.displayDetails();
         c2.displayDetails();
         c3.displayDetails();
- }
+
+        System.out.println("\n=== completed with part-3 ===");
+        // Here you can display attendance records if implemented
+    }
 }

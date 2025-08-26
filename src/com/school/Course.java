@@ -1,9 +1,9 @@
 package com.school;
 
 public class Course {
-    private static int nextCourseIdCounter = 1;
-    String courseId;
-    String courseName;
+    private static int nextCourseIdCounter = 101;
+    private int courseId;
+    private String courseName;
 
     public Course(String courseName) {
         this.courseId = nextCourseIdCounter++;
@@ -11,6 +11,6 @@ public class Course {
     }
 
     public void displayDetails() {
-        System.out.println("Course ID: " + courseId + ", Name: " +courseName);
+        System.out.println("Course ID: C" + courseId + ", Course Name: " +courseName);
     }
 }
