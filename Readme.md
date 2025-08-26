@@ -16,3 +16,15 @@ This is the initial setup for the Attendance Management System project.
 2. Compile: `javac src/com/school/Student.java src/com/school/Course.java src/com/school/Main.java` (or `javac src/com/school/*.java`)
 3. Run: `java -cp src com.school.Main`
 
+## Part 3: Constructor Initialization & Auto-ID Generation
+- Added constructors in `Student` and `Course` classes.
+- Implemented automatic unique ID generation using `private static` variables.
+- Changed `Course`'s `courseId` to an `int` for easier auto-incrementation.
+- Updated `Main.java` to create multiple objects and verified ID progression.
+
+### How to Run
+```bash
+javac src/com/school/Student.java src/com/school/Course.java src/com/school/Main.java
+java -cp src com.school.Main
+
+
