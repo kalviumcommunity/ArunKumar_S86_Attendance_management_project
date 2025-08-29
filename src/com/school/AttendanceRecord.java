@@ -17,7 +17,6 @@ public class AttendanceRecord {
         }
     }
 
-    
     public int getStudentId() {
         return studentId;
     }
