@@ -5,23 +5,21 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Students
-        Student student1 = new Student("Alice");
-        Student student2 = new Student("Bob");
+        // Persons
+        Student student1 = new Student("Alice", "10th Grade");
+        Teacher teacher1 = new Teacher("Mr. Smith", "Math");
+        Staff staff1 = new Staff("Mrs. Johnson", "Librarian");
 
-        // Courses
-        Course course1 = new Course("Math");
-        Course course2 = new Course("Science");
+        // Display details
+        student1.displayDetails();
+        teacher1.displayDetails();
+        staff1.displayDetails();
 
-        // Attendance log
+        // Attendance Records using student.getId()
         List<AttendanceRecord> attendanceLog = new ArrayList<>();
+        attendanceLog.add(new AttendanceRecord(student1.getId(), 1, "Present"));
 
-        // ✅ Creating Attendance Records
-        attendanceLog.add(new AttendanceRecord(student1.getStudentId(), course1.getCourseId(), "Present"));
-        attendanceLog.add(new AttendanceRecord(student2.getStudentId(), course2.getCourseId(), "Absent"));
-        attendanceLog.add(new AttendanceRecord(student1.getStudentId(), course2.getCourseId(), "Holiday")); // invalid
-
-        // ✅ Display Records
+        System.out.println("\nAttendance Records:");
         for (AttendanceRecord record : attendanceLog) {
             record.displayRecord();
         }
