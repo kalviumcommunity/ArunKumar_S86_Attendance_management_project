@@ -1,22 +1,16 @@
 package com.school;
 
-public class Student {
-    private static int idCounter = 1;
+public class Student extends Person {
+    private String gradeLevel;
 
-    private int studentId;
-    private String name;
-
-    public Student(String name) {
-        this.studentId = idCounter++;
-        this.name = name;
+    public Student(String name, String gradeLevel) {
+        super(name); // Call parent constructor
+        this.gradeLevel = gradeLevel;
     }
 
-    // ✅ Getters
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public String getName() {
-        return name;
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Role: Student, Grade Level: " + gradeLevel);
     }
 }
