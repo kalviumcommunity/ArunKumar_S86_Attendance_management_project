@@ -39,3 +39,8 @@ java -cp src com.school.Main
 
 
 
+## Part 6: Interface-Driven Persistence with Storage
+- Defined a `Storable` interface with a `toDataString()` method.
+- Modified `Student`, `Course`, and `AttendanceRecord` classes to implement `Storable`.
+- Created `FileStorageService` to save lists of `Storable` objects to text files.
+- Demonstrated saving students, courses, and attendance records to `students.txt`, `courses.txt`, `attendance_log.txt`.
