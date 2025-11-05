@@ -3,8 +3,9 @@ package com.school;
 public class Teacher extends Person {
     private String subjectTaught;
 
-    public Teacher(String name, String subjectTaught) {
-        super(name);
+    // Constructor matching Main.java usage: Teacher(int id, String name, String subjectTaught)
+    public Teacher(int id, String name, String subjectTaught) {
+        super(id, name);
         this.subjectTaught = subjectTaught;
     }
 
