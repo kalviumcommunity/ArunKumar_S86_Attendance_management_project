@@ -3,8 +3,9 @@ package com.school;
 public class Staff extends Person {
     private String role;
 
-    public Staff(String name, String role) {
-        super(name);
+    // Constructor matching Main.java usage: Staff(int id, String name, String role)
+    public Staff(int id, String name, String role) {
+        super(id, name);
         this.role = role;
     }
 

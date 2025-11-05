@@ -3,8 +3,9 @@ package com.school;
 public class Student extends Person implements Storable  {
     private String gradeLevel;
 
-    public Student(String name, String gradeLevel) {
-        super(name); // Call parent constructor
+    // Constructor matching Main.java usage: Student(int id, String name, String gradeLevel)
+    public Student(int id, String name, String gradeLevel) {
+        super(id, name);
         this.gradeLevel = gradeLevel;
     }
 
