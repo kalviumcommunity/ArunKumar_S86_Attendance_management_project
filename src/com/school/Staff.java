@@ -1,17 +1,24 @@
 package com.school;
 
-public class Staff extends Person {
+public class Staff extends Person implements Storable {
     private String role;
 
-    // Constructor matching Main.java usage: Staff(int id, String name, String role)
     public Staff(int id, String name, String role) {
         super(id, name);
         this.role = role;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Role: Staff, Position: " + role);
+        System.out.println("Staff: " + getName() + " (ID: " + getId() + "), Role: " + role);
+    }
+
+    @Override
+    public String toDataString() {
+        return getId() + "," + getName() + "," + role;
     }
 }

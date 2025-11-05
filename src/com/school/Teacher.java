@@ -1,17 +1,24 @@
 package com.school;
 
-public class Teacher extends Person {
-    private String subjectTaught;
+public class Teacher extends Person implements Storable {
+    private String department;
 
-    // Constructor matching Main.java usage: Teacher(int id, String name, String subjectTaught)
-    public Teacher(int id, String name, String subjectTaught) {
+    public Teacher(int id, String name, String department) {
         super(id, name);
-        this.subjectTaught = subjectTaught;
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
     }
 
     @Override
     public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Role: Teacher, Subject: " + subjectTaught);
+        System.out.println("Teacher: " + getName() + " (ID: " + getId() + "), Department: " + department);
+    }
+
+    @Override
+    public String toDataString() {
+        return getId() + "," + getName() + "," + department;
     }
 }
