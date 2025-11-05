@@ -30,8 +30,9 @@ public class RegistrationService {
         staffMembers.add(new Staff(id, name, role));
     }
 
-    public void createCourse(int id, String courseName) {
-        courses.add(new Course(id, courseName));
+    // ✅ FIX: Updated createCourse() with capacity parameter
+    public void createCourse(int id, String courseName, int capacity) {
+        courses.add(new Course(id, courseName, capacity));
     }
 
     public List<Student> getStudents() {
@@ -70,6 +71,17 @@ public class RegistrationService {
         all.addAll(teachers);
         all.addAll(staffMembers);
         return all;
+    }
+
+    // ✅ FIX: Added enrollStudentInCourse method
+    public boolean enrollStudentInCourse(Student student, Course course) {
+        boolean success = course.addStudent(student);
+        if (success) {
+            System.out.println("✅ " + student.getName() + " enrolled in " + course.getCourseName());
+        } else {
+            System.out.println("⚠️ Course " + course.getCourseName() + " is full! Could not enroll " + student.getName());
+        }
+        return success;
     }
 
     public void saveAllRegistrations() {
