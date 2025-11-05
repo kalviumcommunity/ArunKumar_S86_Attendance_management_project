@@ -16,41 +16,31 @@ public class Main {
     public static void main(String[] args) {
         Student s1 = new Student(1, "Alice", "10th Grade");
         Student s2 = new Student(2, "Bob", "9th Grade");
+        List<Student> allStudents = List.of(s1, s2);
 
         Teacher t1 = new Teacher(101, "Mr. Smith", "Mathematics Department");
         Staff st1 = new Staff(201, "Ms. Clara", "Administration");
 
-        List<Person> schoolPeople = new ArrayList<>();
-        schoolPeople.add(s1);
-        schoolPeople.add(s2);
-        schoolPeople.add(t1);
-        schoolPeople.add(st1);
-
+        List<Person> schoolPeople = new ArrayList<>(List.of(s1, s2, t1, st1));
         displaySchoolDirectory(schoolPeople);
 
         Course c1 = new Course(301, "Math");
         Course c2 = new Course(302, "Science");
-
-        List<AttendanceRecord> records = new ArrayList<>();
-        records.add(new AttendanceRecord(s1, c1, "Present"));
-        records.add(new AttendanceRecord(s2, c2, "Absent"));
-
-        System.out.println("\n=== Attendance Log ===");
-        for (AttendanceRecord r : records) {
-            r.displayRecord();
-        }
+        List<Course> allCourses = List.of(c1, c2);
 
         FileStorageService storage = new FileStorageService();
+        AttendanceService attendanceService = new AttendanceService(storage);
 
-        List<Student> studentList = new ArrayList<>();
-        for (Person p : schoolPeople) {
-            if (p instanceof Student) {
-                studentList.add((Student) p);
-            }
-        }
+        attendanceService.markAttendance(s1, c1, "Present");
+        attendanceService.markAttendance(2, 302, "Absent", allStudents, allCourses);
+        attendanceService.markAttendance(1, 302, "Present", allStudents, allCourses);
 
-        storage.saveData(studentList, "students.txt");
-        storage.saveData(List.of(c1, c2), "courses.txt");
-        storage.saveData(records, "attendance_log.txt");
+        attendanceService.displayAttendanceLog();
+        attendanceService.displayAttendanceLog(s1);
+        attendanceService.displayAttendanceLog(c1);
+
+        attendanceService.saveAttendanceData();
+        storage.saveData(allStudents, "students.txt");
+        storage.saveData(allCourses, "courses.txt");
     }
 }
