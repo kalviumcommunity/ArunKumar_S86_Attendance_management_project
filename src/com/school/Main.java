@@ -1,46 +1,38 @@
 package com.school;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
-    public static void displaySchoolDirectory(List<Person> people) {
+    public static void displaySchoolDirectory(RegistrationService regService) {
         System.out.println("=== School Directory ===");
-        for (Person person : people) {
+        for (Person person : regService.getAllPeople()) {
             person.displayDetails();
         }
         System.out.println("=========================");
     }
 
     public static void main(String[] args) {
-        Student s1 = new Student(1, "Alice", "10th Grade");
-        Student s2 = new Student(2, "Bob", "9th Grade");
-        List<Student> allStudents = List.of(s1, s2);
-
-        Teacher t1 = new Teacher(101, "Mr. Smith", "Mathematics Department");
-        Staff st1 = new Staff(201, "Ms. Clara", "Administration");
-
-        List<Person> schoolPeople = new ArrayList<>(List.of(s1, s2, t1, st1));
-        displaySchoolDirectory(schoolPeople);
-
-        Course c1 = new Course(301, "Math");
-        Course c2 = new Course(302, "Science");
-        List<Course> allCourses = List.of(c1, c2);
-
         FileStorageService storage = new FileStorageService();
-        AttendanceService attendanceService = new AttendanceService(storage);
+        RegistrationService regService = new RegistrationService(storage);
+        AttendanceService attendanceService = new AttendanceService(storage, regService);
 
-        attendanceService.markAttendance(s1, c1, "Present");
-        attendanceService.markAttendance(2, 302, "Absent", allStudents, allCourses);
-        attendanceService.markAttendance(1, 302, "Present", allStudents, allCourses);
+        regService.registerStudent(1, "Alice", "10th Grade");
+        regService.registerStudent(2, "Bob", "9th Grade");
+        regService.registerTeacher(101, "Mr. Smith", "Mathematics Department");
+        regService.registerStaff(201, "Ms. Clara", "Administration");
+        regService.createCourse(301, "Math");
+        regService.createCourse(302, "Science");
+
+        displaySchoolDirectory(regService);
+
+        attendanceService.markAttendance(1, 301, "Present");
+        attendanceService.markAttendance(2, 302, "Absent");
+        attendanceService.markAttendance(1, 302, "Present");
 
         attendanceService.displayAttendanceLog();
-        attendanceService.displayAttendanceLog(s1);
-        attendanceService.displayAttendanceLog(c1);
 
+        regService.saveAllRegistrations();
         attendanceService.saveAttendanceData();
-        storage.saveData(allStudents, "students.txt");
-        storage.saveData(allCourses, "courses.txt");
     }
 }
