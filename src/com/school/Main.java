@@ -21,15 +21,29 @@ public class Main {
         regService.registerStudent(2, "Bob", "9th Grade");
         regService.registerTeacher(101, "Mr. Smith", "Mathematics Department");
         regService.registerStaff(201, "Ms. Clara", "Administration");
-        regService.createCourse(301, "Math");
-        regService.createCourse(302, "Science");
+
+        regService.createCourse(301, "Math", 2);
+        regService.createCourse(302, "Science", 1);
 
         displaySchoolDirectory(regService);
 
-        attendanceService.markAttendance(1, 301, "Present");
-        attendanceService.markAttendance(2, 302, "Absent");
-        attendanceService.markAttendance(1, 302, "Present");
+        Student s1 = regService.findStudentById(1);
+        Student s2 = regService.findStudentById(2);
+        Course c1 = regService.findCourseById(301);
+        Course c2 = regService.findCourseById(302);
 
+        regService.enrollStudentInCourse(s1, c1);
+        regService.enrollStudentInCourse(s2, c1);
+        regService.enrollStudentInCourse(s1, c2);
+        regService.enrollStudentInCourse(s2, c2); // exceeds capacity
+
+        System.out.println("\n=== Course Details After Enrollment ===");
+        for (Course c : regService.getCourses()) {
+            c.displayDetails();
+        }
+
+        attendanceService.markAttendance(1, 301, "Present");
+        attendanceService.markAttendance(2, 301, "Absent");
         attendanceService.displayAttendanceLog();
 
         regService.saveAllRegistrations();

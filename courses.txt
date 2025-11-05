@@ -1,2 +1,2 @@
-301,Math
-302,Science
+301,Math,2
+302,Science,1
